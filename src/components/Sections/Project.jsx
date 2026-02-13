@@ -47,7 +47,7 @@ export const Project = () => {
               </div>
               <div className="flex justify-center items-center mt-4">
                 <a
-                  href="https://zahimkhan1.github.io/Landing-page/"
+                  href="https://health-care-app-nu-virid.vercel.app"
                   className="text-blue-400 hover:text-blue-300 transition-colors my-4 border border-gray-800 px-3 py-1 rounded-lg hover:border-blue-500/30"
                 >
                   View Project →
