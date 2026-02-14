@@ -16,7 +16,10 @@ function App() {
       <div
         className={`min-h-screen transition-opacity duration-700 ${
           isloaded ? "opacity-100" : "opacity-0"
-        } bg-black text-gray-700`}
+        } text-gray-700`}
+        style={{
+          background: "linear-gradient(to bottom, #000000 0%, #030712 25%, #000000 50%, #030712 75%, #000000 100%)"
+        }}
       >
         <Navbar />
         <Home/>

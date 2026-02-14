@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,11 @@ export const Contact = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_EMAILJS_PUBLIC_KEY");
+  }, []);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -66,58 +72,78 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_EMAILJS_SERVICE_ID",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_EMAILJS_TEMPLATE_ID",
+        {
+          to_email: "zahimahmedkhan@gmail.com",
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          reply_to: formData.email,
+        }
+      );
 
-      console.log("Form submitted:", formData);
-      setSubmitSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSubmitSuccess(false), 3000);
+      if (response.status === 200) {
+        setSubmitSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      }
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error("Email sending failed:", error);
+      alert("Failed to send message. Please try again or contact directly at zahimahmedkhan@gmail.com");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div id="Contacts" className="min-h-screen py-20 bg-black text-gray-100">
-      {/* Navigation */}
-      <nav className=" shadow-lg">
-        <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-16 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent text-center">
-            Contact Me
-          </h2>
-        </div>
-      </nav>
+    <div id="Contacts" className="min-h-screen py-20 text-gray-100 relative overflow-hidden" style={{background: "linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%), linear-gradient(to bottom, #000000 0%, #030712 50%, #000000 100%)"}}>
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10 animate-pulse" style={{animationDelay: "2s"}}></div>
+
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
+        <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">Have a project in mind? Let's collaborate and create something amazing together</p>
+      </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12 max-w-3xl">
-        <div className="bg-gray-900/50 rounded-xl p-8 shadow-lg border border-blue-500/20">
-          <h2 className="text-3xl font-bold text-blue-500/80 text-center mb-10">
-            Get in Touch
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Have a project in mind or want to collaborate? Fill out the form
-            below and I'll get back to you as soon as possible.
-          </p>
-
-          {/* Success Message */}
-          {submitSuccess && (
-            <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400">
-              Thank you for your message! I'll respond within 24-48 hours.
-            </div>
-          )}
-
+      <main className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Field */}
+          <div className="lg:col-span-2">
+            <div className="bg-gradient-to-br from-blue-950/30 to-transparent rounded-2xl p-10 shadow-xl border border-blue-500/20 backdrop-blur-sm hover:border-blue-500/40 transition-all">
+              <h2 className="text-2xl font-bold text-blue-300 mb-8">Send me a message</h2>
+              <p className="text-gray-400 mb-8">
+                I'll respond to your message within 24-48 hours. Feel free to reach out with any questions or project inquiries.
+              </p>
+
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className="mb-6 p-4 bg-green-500/20 border border-green-500/40 rounded-lg text-green-300 flex items-center gap-2">
+                  <span className="text-xl">✓</span>
+                  <div>
+                    <p className="font-semibold">Message sent successfully!</p>
+                    <p className="text-sm">I'll get back to you soon.</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Form */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name Field */}
             <div>
               <label
                 htmlFor="name"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-3 font-semibold"
               >
-                Name <span className="text-red-800">*</span>
+                Your Name <span className="text-red-400">*</span>
               </label>
               <input
                 type="text"
@@ -126,15 +152,15 @@ export const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 ${
+                className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg focus:outline-none focus:ring-2 transition ${
                   errors.name
-                    ? "border-red-800 focus:ring-red-500"
-                    : "border-gray-700 focus:ring-blue-500"
+                    ? "border-red-500/50 focus:ring-red-500 focus:border-red-500"
+                    : "border-gray-700 focus:ring-blue-500 focus:border-blue-500"
                 }`}
-                placeholder="Your name"
+                placeholder="John Doe"
               />
               {errors.name && (
-                <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.name}</p>
               )}
             </div>
 
@@ -142,9 +168,9 @@ export const Contact = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-3 font-semibold"
               >
-                Email <span className="text-red-800">*</span>
+                Email Address <span className="text-red-400">*</span>
               </label>
               <input
                 type="email"
@@ -153,15 +179,15 @@ export const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 ${
+                className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg focus:outline-none focus:ring-2 transition ${
                   errors.email
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-700 focus:ring-blue-500"
+                    ? "border-red-500/50 focus:ring-red-500 focus:border-red-500"
+                    : "border-gray-700 focus:ring-blue-500 focus:border-blue-500"
                 }`}
                 placeholder="your.email@example.com"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.email}</p>
               )}
             </div>
 
@@ -169,9 +195,9 @@ export const Contact = () => {
             <div>
               <label
                 htmlFor="message"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-3 font-semibold"
               >
-                Message <span className="text-red-800">*</span>
+                Message <span className="text-red-400">*</span>
               </label>
               <textarea
                 id="message"
@@ -180,15 +206,15 @@ export const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 ${
+                className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg focus:outline-none focus:ring-2 transition resize-none ${
                   errors.message
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-700 focus:ring-blue-500"
+                    ? "border-red-500/50 focus:ring-red-500 focus:border-red-500"
+                    : "border-gray-700 focus:ring-blue-500 focus:border-blue-500"
                 }`}
                 placeholder="Tell me about your project..."
               ></textarea>
               {errors.message && (
-                <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.message}</p>
               )}
             </div>
 
@@ -196,14 +222,12 @@ export const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-3 px-6 bg-blue-500/40 hover:bg-blue-700 text-white font-bold rounded-lg transition duration-200 ${
-                isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+              className={`w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold text-lg rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100 flex items-center justify-center gap-2`}
             >
               {isSubmitting ? (
-                <span className="flex items-center justify-center">
+                <>
                   <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    className="animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -223,83 +247,62 @@ export const Contact = () => {
                     ></path>
                   </svg>
                   Sending...
-                </span>
+                </>
               ) : (
-                "Send Message"
+                <>
+                  <span>Send Message</span>
+                  <span>→</span>
+                </>
               )}
             </button>
           </form>
-        </div>
+            </div>
+          </div>
 
-        {/* Additional Contact Info */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
-            <div className="text-blue-500/80 text-2xl mb-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+            {/* Contact Information */}
+            <div className="space-y-6">
+              {/* Email Card */}
+              <div className="bg-gradient-to-br from-blue-950/30 to-transparent rounded-2xl p-6 border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-100">Email</h3>
+                </div>
+                <a href="mailto:zahimahmedkhan@gmail.com" className="text-blue-400 hover:text-blue-300 transition font-semibold">
+                  zahimahmedkhan@gmail.com
+                </a>
+              </div>
+
+              {/* Quick Response Card */}
+              <div className="bg-gradient-to-br from-cyan-950/30 to-transparent rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                    <span className="text-xl">⚡</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-100">Response Time</h3>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Usually responds within<br/><span className="font-semibold text-cyan-300">24-48 hours</span>
+                </p>
+              </div>
+
+              {/* Availability Card */}
+              <div className="bg-gradient-to-br from-purple-950/30 to-transparent rounded-2xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                    <span className="text-xl">🚀</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-100">Availability</h3>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Open to freelance projects<br/>and collaborations
+                </p>
+              </div>
             </div>
-            <h3 className="font-bold text-lg mb-2">Email</h3>
-            <p className="text-gray-400">contact@example.com</p>
           </div>
-          <div className="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
-            <div className="text-blue-500/80 text-2xl mb-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-            </div>
-            <h3 className="font-bold text-lg mb-2">Phone</h3>
-            <p className="text-gray-400">+1 (555) 123-4567</p>
-          </div>
-          <div className="bg-blue-500/10 p-6 rounded-xl border border-blue-500/20">
-            <div className="text-blue-500/80 text-2xl mb-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </div>
-            <h3 className="font-bold text-lg mb-2">Location</h3>
-            <p className="text-gray-400">San Francisco, CA</p>
-          </div>
-        </div>
       </main>
     </div>
   );
