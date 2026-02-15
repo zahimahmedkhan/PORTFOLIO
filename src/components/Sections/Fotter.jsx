@@ -23,7 +23,7 @@ export const Fotter = () => {
                 <li><a href="#home" className="text-gray-400 hover:text-blue-400 transition font-medium">Home</a></li>
                 <li><a href="#about" className="text-gray-400 hover:text-blue-400 transition font-medium">About</a></li>
                 <li><a href="#projects" className="text-gray-400 hover:text-blue-400 transition font-medium">Projects</a></li>
-                <li><a href="#Contacts" className="text-gray-400 hover:text-blue-400 transition font-medium">Contact</a></li>
+                <li><a href="#contacts" className="text-gray-400 hover:text-blue-400 transition font-medium">Contact</a></li>
               </ul>
             </div>
 

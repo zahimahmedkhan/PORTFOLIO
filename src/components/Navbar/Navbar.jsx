@@ -20,7 +20,7 @@ export const Navbar = () => {
             <li><a href="#home" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/10 transition duration-300 font-medium">Home</a></li>
             <li><a href="#about" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/10 transition duration-300 font-medium">About</a></li>
             <li><a href="#projects" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/10 transition duration-300 font-medium">Projects</a></li>
-            <li><a href="#Contacts" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/10 transition duration-300 font-medium">Contact</a></li>
+            <li><a href="#contacts" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/10 transition duration-300 font-medium">Contact</a></li>
           </ul>
         
           {/* Mobile Menu Button */}
@@ -35,7 +35,7 @@ export const Navbar = () => {
             <li><a href="#home" className="text-gray-300 hover:text-white block px-4 py-2 rounded-lg hover:bg-white/10 transition" onClick={() => setIsOpen(false)}>Home</a></li>
             <li><a href="#about" className="text-gray-300 hover:text-white block px-4 py-2 rounded-lg hover:bg-white/10 transition" onClick={() => setIsOpen(false)}>About</a></li>
             <li><a href="#projects" className="text-gray-300 hover:text-white block px-4 py-2 rounded-lg hover:bg-white/10 transition" onClick={() => setIsOpen(false)}>Projects</a></li>
-            <li><a href="#Contacts" className="text-gray-300 hover:text-white block px-4 py-2 rounded-lg hover:bg-white/10 transition" onClick={() => setIsOpen(false)}>Contact</a></li>
+            <li><a href="#contacts" className="text-gray-300 hover:text-white block px-4 py-2 rounded-lg hover:bg-white/10 transition" onClick={() => setIsOpen(false)}>Contact</a></li>
           </ul>
         </div>
       </nav>

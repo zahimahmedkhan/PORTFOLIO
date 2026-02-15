@@ -32,7 +32,7 @@ export const Project = () => {
                 <h3 className="text-gray-100 text-2xl font-bold">
                   HealthCare App
                 </h3>
-                <span className="text-xs bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/30 font-semibold\">Hackathon</span>
+               <span className="text-xs bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/30 font-semibold">Hackathon</span>
               </div>
               <p className="text-gray-300 mb-6 text-base leading-relaxed">
                AI-powered healthcare platform with OCR scanning, document processing, and secure file management.
@@ -59,13 +59,13 @@ export const Project = () => {
                 ))}
               </div>
               <div className="flex items-center justify-between mt-6 pt-6 border-t border-cyan-500/10">
-                <span className="text-gray-400 text-sm\">Full Stack MERN</span>
+               <span className="text-gray-400 text-sm">Full Stack MERN</span>
                 <a
                   href="https://health-care-app-nu-virid.vercel.app"
                   className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors inline-flex items-center gap-2 group/link"
                 >
                   View Project 
-                  <span className="group-hover/link:translate-x-1 transition-transform\">→</span>
+                 <span className="group-hover/link:translate-x-1 transition-transform">→</span>
                 </a>
               </div>
             </div>
@@ -76,7 +76,7 @@ export const Project = () => {
                 <h3 className="text-gray-100 text-2xl font-bold">
                   Expense Tracker
                 </h3>
-                <span className="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 font-semibold">Full Stack</span>
+                <span className="inline-flex whitespace-nowrap text-xs bg-purple-500/20 text-purple-300 px-4 py-1 rounded-full border border-purple-500/30 font-semibold">Full Stack</span>
               </div>
               <p className="text-gray-300 mb-6 text-base leading-relaxed">
                 Track and manage expenses with interactive charts and insights. Take control of your financial journey.

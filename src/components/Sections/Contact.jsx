@@ -99,7 +99,7 @@ export const Contact = () => {
   };
 
   return (
-    <div id="Contacts" className="min-h-screen py-20 text-gray-100 relative overflow-hidden" style={{background: "linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%), linear-gradient(to bottom, #000000 0%, #030712 50%, #000000 100%)"}}>
+    <div id="contacts" className="min-h-screen py-20 text-gray-100 relative overflow-hidden" style={{background: "linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%), linear-gradient(to bottom, #000000 0%, #030712 50%, #000000 100%)"}}>
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10 animate-pulse" style={{animationDelay: "2s"}}></div>
