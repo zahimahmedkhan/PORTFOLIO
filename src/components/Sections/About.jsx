@@ -44,7 +44,7 @@ export const About = () => {
 
   return (
     <section
-      id="about"
+      id="About"
       className="min-h-screen flex items-center justify-center py-20"
       style={{
         background: "linear-gradient(to bottom, transparent 0%, rgba(6, 182, 212, 0.02) 50%, transparent 100%), linear-gradient(135deg, #030712 0%, #000000 50%, #030712 100%)"
