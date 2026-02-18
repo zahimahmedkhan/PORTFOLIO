@@ -39,7 +39,7 @@ export const Fotter = () => {
                 </li>
                 <li className="flex items-center">
                   <span className="text-blue-400 font-bold mr-3">📍</span>
-                  <a href="" className="text-gray-400 font-medium">
+                  <a className="text-gray-400 font-medium">
                     Karachi, Pakistan
                   </a>
                 </li>

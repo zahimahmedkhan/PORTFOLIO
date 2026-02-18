@@ -13,7 +13,7 @@ export const Contact = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_EMAILJS_PUBLIC_KEY");
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
   }, []);
 
   const validateField = (name, value) => {
@@ -74,8 +74,8 @@ export const Contact = () => {
     try {
       // Send email using EmailJS
       const response = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_EMAILJS_SERVICE_ID",
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_EMAILJS_TEMPLATE_ID",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           to_email: "zahimahmedkhan@gmail.com",
           from_name: formData.name,
@@ -222,7 +222,7 @@ export const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold text-lg rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100 flex items-center justify-center gap-2`}
+              className={`w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold text-lg rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100 flex items-center justify-center gap-2 cursor-pointer`}
             >
               {isSubmitting ? (
                 <>

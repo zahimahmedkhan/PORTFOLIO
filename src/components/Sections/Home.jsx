@@ -52,7 +52,7 @@ export const Home = () => {
               <a href="#projects">
                 <Button 
                   size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white py-3 px-8 font-bold rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white py-3 px-8 font-bold rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30 cursor-pointer"
                 >
                   View Projects
                 </Button>
@@ -60,7 +60,7 @@ export const Home = () => {
               <a href="#contacts">
                 <Button
                   size="lg"
-                  className="text-white border-2 border-cyan-500/60 hover:border-cyan-400 hover:bg-cyan-500/10 py-3 px-8 font-bold rounded-lg transition duration-300"
+                  className="text-white border-2 border-cyan-500/60 hover:border-cyan-400 hover:bg-cyan-500/10 py-3 px-8 font-bold rounded-lg transition duration-300 cursor-pointer"
                 >
                   Contact Me
                 </Button>
