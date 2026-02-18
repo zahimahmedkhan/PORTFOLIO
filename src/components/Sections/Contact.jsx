@@ -13,7 +13,7 @@ export const Contact = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    emailjs.init({ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
   }, []);
 
   const validateField = (name, value) => {
