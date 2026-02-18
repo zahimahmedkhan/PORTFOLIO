@@ -57,7 +57,7 @@ export const Home = () => {
                   View Projects
                 </Button>
               </a>
-              <a href="#Contacts">
+              <a href="#contacts">
                 <Button
                   size="lg"
                   className="text-white border-2 border-cyan-500/60 hover:border-cyan-400 hover:bg-cyan-500/10 py-3 px-8 font-bold rounded-lg transition duration-300"

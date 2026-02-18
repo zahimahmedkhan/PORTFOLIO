@@ -50,8 +50,8 @@ export const About = () => {
         background: "linear-gradient(to bottom, transparent 0%, rgba(6, 182, 212, 0.02) 50%, transparent 100%), linear-gradient(135deg, #030712 0%, #000000 50%, #030712 100%)"
       }}
     >
-      <ScrollAnimation animateIn="fadeIn">
         <RevealOnScroll>
+      <ScrollAnimation animateIn="fadeIn" animateOnce={true} offset={120}>
           <div className="max-w-5xl mx-auto px-4 space-y-12">
             {/* Header */}
             <div className="text-center">
@@ -194,8 +194,8 @@ export const About = () => {
               </div>
             </div>
           </div>
-        </RevealOnScroll>
       </ScrollAnimation>
+        </RevealOnScroll>
     </section>
   );
 };
