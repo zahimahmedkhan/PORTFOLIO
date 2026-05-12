@@ -298,7 +298,7 @@ export const Contact = () => {
                   <h3 className="text-lg font-bold text-gray-100">Availability</h3>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  Open to freelance projects<br/>and collaborations
+                  Open to internship opportunities<br/>and collaborations
                 </p>
               </div>
             </div>
