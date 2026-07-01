@@ -2,15 +2,6 @@ import React from "react";
 import { Download } from "lucide-react";
 import { Button } from "../ui/button";
 import { RevealOnScroll } from "../RevealOnScroll";
-
-/**
- * Resume link: A 404 from Cloudinary almost always means the URL does not match your account
- * (wrong cloud name in the path) or the public_id includes a folder — copy **Delivery URL** from
- * Media Library → open the PDF → copy link.
- *
- * Option A: Add `VITE_RESUME_PDF_URL=https://res.cloudinary.com/<your-cloud>/raw/upload/...` to `.env`
- * Option B: Put your file at `public/resume.pdf` (used automatically if the env var is unset)
- */
 const basePath = `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}`;
 const RESUME_LOCAL_URL = `${basePath}resume.pdf`;
 const RESUME_FROM_ENV =
@@ -20,7 +11,7 @@ const RESUME_FROM_ENV =
 const RESUME_PDF_URL = RESUME_FROM_ENV
 
 /** Cloudinary image delivery URL for your headshot (square photo works best). Leave empty for initials. */
-const HERO_PROFILE_IMAGE_URL = `https://res.cloudinary.com/dy9dwcnqs/image/upload/v1778611018/zahim_p2i0ve.jpg`;
+const HERO_PROFILE_IMAGE_URL = `https://res.cloudinary.com/dy9dwcnqs/image/upload/v1782931215/image_hwsgkx.jpg`;
 
 export const Home = () => {
   return (
