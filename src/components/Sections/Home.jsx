@@ -11,7 +11,7 @@ const RESUME_FROM_ENV =
 const RESUME_PDF_URL = RESUME_FROM_ENV
 
 /** Cloudinary image delivery URL for your headshot (square photo works best). Leave empty for initials. */
-const HERO_PROFILE_IMAGE_URL = `https://res.cloudinary.com/dy9dwcnqs/image/upload/v1782931215/image_hwsgkx.jpg`;
+const HERO_PROFILE_IMAGE_URL = `https://res.cloudinary.com/dy9dwcnqs/image/upload/v1783020893/image_aoozlp.png`;
 
 export const Home = () => {
   return (
